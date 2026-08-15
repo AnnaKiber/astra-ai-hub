@@ -4,28 +4,26 @@ __pycache__/
 *.pyo
 *.pyd
 
-# Virtual Environment
-.venv/
-venv/
+# Virtual environment
+backend/.venv/
 
-# Environment
+# Environment variables
 .env
+.env.*
 
 # VS Code
-.vscode/settings.json
+.vscode/
 
-# Python
+# Pytest
 .pytest_cache/
-.mypy_cache/
 
-# macOS
-.DS_Store
-
-# Windows
-Thumbs.db
-
-# Node
-node_modules/
+# Coverage
+.coverage
+htmlcov/
 
 # Logs
 *.log
+
+# OS
+.DS_Store
+Thumbs.db
