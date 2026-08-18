@@ -26,12 +26,27 @@ class UserRepository:
         self.db.commit()
         self.db.refresh(user)
 
+        print("=" * 60)
+        print(f"type(user.role): {type(user.role)}")
+        print(f"user.role: {repr(user.role)}")
+        print("=" * 60)
+
         return user
 
-    def get_by_id(self, user_id: int) -> User | None:
-        statement = select(User).where(User.id == user_id)
+    def get_by_id(
+        self,
+        user_id: int,
+    ) -> User | None:
+        statement = select(User).where(
+            User.id == user_id,
+        )
         return self.db.scalar(statement)
 
-    def get_by_email(self, email: str) -> User | None:
-        statement = select(User).where(User.email == email)
+    def get_by_email(
+        self,
+        email: str,
+    ) -> User | None:
+        statement = select(User).where(
+            User.email == email,
+        )
         return self.db.scalar(statement)

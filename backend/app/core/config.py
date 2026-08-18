@@ -13,6 +13,9 @@ class Settings(BaseSettings):
 
     API_V1_PREFIX: str
 
+    JWT_SECRET_KEY: str
+    JWT_ALGORITHM: str
+    ACCESS_TOKEN_EXPIRE_MINUTES: int
 
     DATABASE_HOST: str
     DATABASE_PORT: int
@@ -34,7 +37,7 @@ class Settings(BaseSettings):
             f"{self.DATABASE_HOST}:"
             f"{self.DATABASE_PORT}/"
             f"{self.DATABASE_NAME}"
-    )
+        )
 
 
 settings = Settings()
