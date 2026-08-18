@@ -3,6 +3,12 @@ from app.schemas.agent import (
     AgentResponse,
     AgentUpdate,
 )
+from app.schemas.chat import (
+    ConversationCreate,
+    ConversationResponse,
+    MessageCreate,
+    MessageResponse,
+)
 from app.schemas.login import LoginRequest
 from app.schemas.token import Token
 from app.schemas.user import (
@@ -18,6 +24,10 @@ __all__ = [
     "Token",
     "LoginRequest",
     "AgentCreate",
-    "AgentUpdate",
     "AgentResponse",
+    "AgentUpdate",
+    "ConversationCreate",
+    "ConversationResponse",
+    "MessageCreate",
+    "MessageResponse",
 ]

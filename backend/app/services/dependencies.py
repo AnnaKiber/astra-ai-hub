@@ -5,12 +5,17 @@ from fastapi import Depends, HTTPException, status
 from app.core.security import oauth2_scheme
 from app.models.user import User, UserRole
 from app.repositories.agent import AgentRepository
+from app.repositories.conversation import ConversationRepository
 from app.repositories.dependencies import (
     get_agent_repository,
+    get_conversation_repository,
+    get_message_repository,
     get_user_repository,
 )
+from app.repositories.message import MessageRepository
 from app.repositories.user import UserRepository
 from app.services.agent import AgentService
+from app.services.chat import ChatService
 from app.services.jwt import JWTService
 from app.services.user import UserService
 
@@ -25,6 +30,24 @@ def get_agent_service(
     repository: AgentRepository = Depends(get_agent_repository),
 ) -> AgentService:
     return AgentService(repository)
+
+
+def get_chat_service(
+    agent_repository: AgentRepository = Depends(
+        get_agent_repository,
+    ),
+    conversation_repository: ConversationRepository = Depends(
+        get_conversation_repository,
+    ),
+    message_repository: MessageRepository = Depends(
+        get_message_repository,
+    ),
+) -> ChatService:
+    return ChatService(
+        agent_repository=agent_repository,
+        conversation_repository=conversation_repository,
+        message_repository=message_repository,
+    )
 
 
 def get_current_user(
