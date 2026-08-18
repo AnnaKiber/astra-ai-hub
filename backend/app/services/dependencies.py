@@ -4,8 +4,13 @@ from fastapi import Depends, HTTPException, status
 
 from app.core.security import oauth2_scheme
 from app.models.user import User, UserRole
-from app.repositories.dependencies import get_user_repository
+from app.repositories.agent import AgentRepository
+from app.repositories.dependencies import (
+    get_agent_repository,
+    get_user_repository,
+)
 from app.repositories.user import UserRepository
+from app.services.agent import AgentService
 from app.services.jwt import JWTService
 from app.services.user import UserService
 
@@ -14,6 +19,12 @@ def get_user_service(
     repository: UserRepository = Depends(get_user_repository),
 ) -> UserService:
     return UserService(repository)
+
+
+def get_agent_service(
+    repository: AgentRepository = Depends(get_agent_repository),
+) -> AgentService:
+    return AgentService(repository)
 
 
 def get_current_user(
